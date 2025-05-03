@@ -21,31 +21,30 @@ class LoginPage extends StatelessWidget {
       return;
     }
 
-    final result = await authService.login(email, password);
+    final user = await authService.login(email, password);
 
-    if (result.containsKey('error')) {
-      _showError(context, result['error']);
+    if (user == null) {
+      _showError(context, 'Email o contrasenya incorrectes.');
     } else {
-      context.go('/');
+      context.go('/'); // Navega a la pantalla principal
     }
   }
 
   void _showError(BuildContext context, String message) {
     showDialog(
       context: context,
-      builder:
-          (context) => AlertDialog(
-            title: const Text('Error'),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('OK'),
-              ),
-            ],
+      builder: (context) => AlertDialog(
+        title: const Text('Error'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('OK'),
           ),
+        ],
+      ),
     );
   }
 

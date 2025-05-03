@@ -129,9 +129,9 @@ class _BorrarScreenState extends State<BorrarScreen> {
                             if (user.id != null) {
                               _showDeleteConfirmation(context, user.id!, user.name);
                             } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('No es pot esborrar un usuari sense ID'),
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('No es pot esborrar un usuari sense ID: $user'),
                                   backgroundColor: Colors.red,
                                 ),
                               );
